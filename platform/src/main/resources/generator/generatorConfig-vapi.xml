@@ -4,33 +4,51 @@
         "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
 
 <generatorConfiguration>
-    <properties resource="application-dev.properties"/>
+    <properties resource="application.properties"/>
 
     <context id="Mysql" targetRuntime="MyBatis3Simple" defaultModelType="flat">
 		<property name="javaFileEncoding" value="UTF-8"/>
         
         <plugin type="tk.mybatis.mapper.generator.MapperPlugin">
-            <property name="mappers" value="com.vpinfra.platform.MyMapper"/>
+            <property name="mappers" value="${mapper.mappers}"/>
             <property name="caseSensitive" value="true"/>
 		    <property name="forceAnnotation" value="true"/>
 		    <property name="beginningDelimiter" value="`"/>
 		    <property name="endingDelimiter" value="`"/>
         </plugin>
 
-        <jdbcConnection driverClass="com.mysql.jdbc.Driver" 
-        				connectionURL="jdbc:mysql://localhost:3306/vapi?useUnicode=yes&amp;characterEncoding=UTF-8"
-                        userId="root"
-                        password="12345678">
+        <jdbcConnection driverClass="${spring.datasource.driverClassName}"
+                        connectionURL="${spring.datasource.url}"
+                        userId="${spring.datasource.username}"
+                        password="${spring.datasource.password}">
         </jdbcConnection>
 
-		<!-- 类型转换 -->
-        <javaTypeResolver type="com.vpinfra.platform.plugins.CustomJavaTypeResolver"></javaTypeResolver>
-        
-        <javaModelGenerator targetPackage="com.vpinfra.platform.entity" targetProject="src/main/java"/>
+        <!-- 类型转换 -->
+        <javaTypeResolver type="com.vpinfra.platform.plugins.CustomJavaTypeResolver"/>
 
-        <sqlMapGenerator targetPackage="vapi" targetProject="src/main/resources/mybatis/mapper"/>
+        <!-- 生成实体类地址 -->
+        <javaModelGenerator targetPackage="${generator.domainPackage}"
+                            targetProject="${generator.targetProject}src/main/java">
+            <!-- 是否在当前路径下新加一层schema,eg：fase路径com.oop.eksp.user.model， true:com.oop.eksp.user.model.[schemaName] -->
+            <property name="enableSubPackages" value="true" />
+        </javaModelGenerator>
 
-        <javaClientGenerator targetPackage="com.vpinfra.platform.mapper" targetProject="src/main/java"
-                             type="XMLMAPPER"/>
+        <!-- 生成mapxml文件 -->
+        <sqlMapGenerator targetPackage="${generator.xmlPackage}"
+                         targetProject="${generator.targetProject}src/main/resources">
+            <!-- 是否在当前路径下新加一层schema,eg：fase路径com.oop.eksp.user.model， true:com.oop.eksp.user.model.[schemaName] -->
+            <property name="enableSubPackages" value="true" />
+        </sqlMapGenerator>
+
+        <!-- 生成mapxml对应client，也就是接口Mapper -->
+        <javaClientGenerator targetPackage="${generator.mapperPackage}"
+                             targetProject="${generator.targetProject}src/main/java" type="XMLMAPPER">
+            <!-- 是否在当前路径下新加一层schema,eg：fase路径com.oop.eksp.user.model， true:com.oop.eksp.user.model.[schemaName] -->
+            <property name="enableSubPackages" value="true" />
+        </javaClientGenerator>
+
+        <table tableName="project" domainObjectName="Project">
+            <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
+        </table>
     </context>
 </generatorConfiguration>
