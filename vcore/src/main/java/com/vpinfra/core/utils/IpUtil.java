@@ -1,6 +1,7 @@
 package com.vpinfra.core.utils;
 
-import com.vpgame.core.common.Constant;
+
+import com.vpinfra.core.common.Constant;
 
 import java.net.InetAddress;
 import java.net.NetworkInterface;

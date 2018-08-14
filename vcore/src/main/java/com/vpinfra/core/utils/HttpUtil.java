@@ -1,6 +1,6 @@
 package com.vpinfra.core.utils;
 
-import com.vpgame.core.common.Constant;
+import com.vpinfra.core.common.Constant;
 import org.apache.commons.io.IOUtils;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;

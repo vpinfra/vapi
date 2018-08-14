@@ -1,7 +1,7 @@
 package com.vpinfra.core.utils;
 
 
-import com.vpgame.core.common.Constant;
+import com.vpinfra.core.common.Constant;
 import org.apache.commons.codec.binary.Base64;
 
 import javax.crypto.Cipher;

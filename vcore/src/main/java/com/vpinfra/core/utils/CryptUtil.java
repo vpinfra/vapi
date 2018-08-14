@@ -1,6 +1,6 @@
 package com.vpinfra.core.utils;
 
-import com.vpgame.core.common.Constant;
+import com.vpinfra.core.common.Constant;
 import org.apache.commons.codec.binary.Hex;
 import org.apache.commons.lang3.StringUtils;
 

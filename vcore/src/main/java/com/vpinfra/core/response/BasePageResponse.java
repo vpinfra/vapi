@@ -1,6 +1,7 @@
 package com.vpinfra.core.response;
 
-import com.vpgame.core.model.FrontendPageBean;
+
+import com.vpinfra.core.model.FrontendPageBean;
 
 /**
  * 分页返回基类，对外接口中使用

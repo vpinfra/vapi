@@ -1,6 +1,7 @@
 package com.vpinfra.core.utils;
 
-import com.vpgame.core.exception.CustomRuntimeException;
+
+import com.vpinfra.core.exception.CustomRuntimeException;
 
 /**
  * twitter snowFlake 分布式全局唯一ID，生成唯一id
